@@ -11,7 +11,7 @@ void slick(Point point) {
     float move_y=dis;
     float move_x=move_y*t;
     move_x=sqrt(move_x);
-    move_y=sqrt(move_x);//y
+    move_y=sqrt(move_x);//y//x
     if (del_x<0) {
       move_x=0-move_x;
     }
