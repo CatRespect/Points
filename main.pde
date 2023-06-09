@@ -21,7 +21,7 @@ void draw(){
   //collusion();
   for(int i=points.size()-1;i>=0;i--){
     Point point = points.get(i);
-    //collusion (i);
+    collusion (i);
     point.update();
     fasing(i);
     point.draw();
