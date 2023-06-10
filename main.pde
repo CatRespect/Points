@@ -89,7 +89,7 @@ void draw() {
     }
   }
 
-  if (touches.length==2) {//5
+  if (touches.length==5) {//5
     Settings();
   } else if (plength==2) {
     pg = createGraphics(width, height);
