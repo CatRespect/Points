@@ -7,6 +7,7 @@ float barrier=0;
 color setting=color(random(150, 255), random(150, 255), random(150, 255));
 Point SettingsPoint;
 int SelectedMode=1;
+int plength=2;
 void setup() {
   size(displayWidth, displayHeight);
   frameRate(60);
@@ -28,25 +29,34 @@ void setup() {
     saving();
   } else {
     String[] in = loadStrings("settings.ini");
-    if (in[0].split("=")[0].equals("SelectedMode") && (int(in[0].split("=")[1])==1 || int(in[0].split("=")[1])==2)) {
-      SelectedMode=int(in[0].split("=")[1]);
-      println("ON START SELECTED MODE: "+str(SelectedMode));
+    if (in.length!=3) {
+      print("FILE CORRUPTED");//добавить максимальное извлечение данных
+      SettingsPoint=new Point(x, y, color(random(50, 255), random(50, 255), random(50, 255)), 50);
+      saving();
     } else {
-      println(in[0]);
-    }
+      if (in[0].split("=")[0].equals("SelectedMode") && (int(in[0].split("=")[1])==1 || int(in[0].split("=")[1])==2)) {
+        SelectedMode=int(in[0].split("=")[1]);
+        println("ON START SELECTED MODE: "+str(SelectedMode));
+      } else {
+        println(in[0]);
+      }
+      print("STEP 1");
 
-    if (in[1].split("=")[0].equals("SettingsPointX") ) {
-      x=float(in[1].split("=")[1]);
-      println("ON START SETTINGSPOINT X: "+str(x));
-    } else {
-      println(in[1]);
-    }
+      if (in[1].split("=")[0].equals("SettingsPointX")) {
+        x=float(in[1].split("=")[1]);
+        println("ON START SETTINGSPOINT X: "+str(x));
+      } else {
+        println(in[1]);
+      }
+      print("STEP 2");
 
-    if (in[2].split("=")[0].equals("SettingsPointY")) {
-      y=int(in[2].split("=")[1]);
-      println("ON START SETTINGSPOINT Y: "+str(y));
-    } else {
-      println(in[2]);
+      if (in[2].split("=")[0].equals("SettingsPointY")) {
+        y=float(in[2].split("=")[1]);
+        println("ON START SETTINGSPOINT Y: "+str(y));
+      } else {
+        println(in[2]);
+      }
+      print("STEP 3");
     }
   }
 
@@ -78,14 +88,16 @@ void draw() {
       slick(point);
     }
   }
+
   if (touches.length==2) {//5
     Settings();
-  } else {
+  } else if (plength==2) {
     pg = createGraphics(width, height);
     pg1 = createGraphics(width, height);
     SettingsPoint.col=color(random(50, 255), random(50, 255), random(50, 255));
     setting=color(random(150, 255), random(150, 255), random(150, 255));
     saving();
   }
+  plength=touches.length;
   //print(frameRate);
 }

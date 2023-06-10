@@ -51,12 +51,12 @@ class Point {
       saving();
     }
   
-    if (y>barrier*3.5-5-size/2 && x<=width/2-10-size/2) {
+    if (y>barrier*3.5-size/2 && x<=width/2-10-size/2) {
       x+=move_x;
       if (x>width/2-10-size/2) {
         x=width/2-10-size/2;
       }
-    } else if (y>barrier*3.5-5-size/2 && x>=width/2+10+size/2) {
+    } else if (y>barrier*3.5-size/2 && x>=width/2+10+size/2) {
       x+=move_x;
       if (x<width/2+10+size/2) {
         x=width/2+10+size/2;
@@ -65,8 +65,8 @@ class Point {
       x+=move_x;
     }
     y+=move_y;
-    if(x>width/2-10-size/2 && x<width/2+10+size/2 && y>barrier*3.5-5-size/2){
-      y=barrier*3.5-5-size/2;
+    if(x>width/2-10-size/2 && x<width/2+10+size/2 && y>barrier*3.5-size/2){
+      y=barrier*3.5-size/2;
     }
     if (x>width-barrier*1.5-10-size/2) {
       x=width-barrier*1.5-10-size/2;
