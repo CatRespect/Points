@@ -11,7 +11,11 @@ void slick(Point point) {
     float move_y=dis;
     float move_x=move_y*t;
     move_x=sqrt(move_x);
-    move_y=sqrt(move_x);//y//x
+    if (SelectedMode==1) {
+      move_y=sqrt(move_x);//y//x
+    } else if (SelectedMode==2) {
+      move_y=sqrt(move_y);//y//x
+    }
     if (del_x<0) {
       move_x=0-move_x;
     }
@@ -35,4 +39,14 @@ void fasing(int i) {
       }
     }
   }
+}
+
+void onAccelerometerEvent(float x, float y, float z)
+{
+  accelerometerX = x;
+  accelerometerY = y;
+  accelerometerZ = z;
+}
+boolean doesFileExist(String filePath) {
+  return new File(dataPath(filePath)).exists();
 }
