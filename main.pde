@@ -1,4 +1,3 @@
-PGraphics pg, pg1, pgp;
 ArrayList<Point> points;
 import ketai.sensors.*;
 KetaiSensor sensor;
@@ -6,6 +5,7 @@ float accelerometerX, accelerometerY, accelerometerZ, rotation;
 float barrier=0;
 color setting=color(random(150, 255), random(150, 255), random(150, 255));
 Point SettingsPoint;
+boolean inSettings;
 int SelectedMode=1;
 int plength=2;
 void setup() {
@@ -13,9 +13,6 @@ void setup() {
   frameRate(60);
   stroke(0);
   background (0);
-  pg = createGraphics(width, height);
-  pg1 = createGraphics(width, height);
-  pgp = createGraphics(width, height);
   barrier=min(width, height)*0.13;
 
   boolean fileExists = doesFileExist("settings.ini");
@@ -77,6 +74,8 @@ void setup() {
 
 void draw() {
   background (0);
+  if(inSettings){
+  filter(INVERT);}
   for (int i=points.size()-1; i>=0; i--) {
     Point point = points.get(i);
     // collusion (i);
@@ -88,12 +87,13 @@ void draw() {
       slick(point);
     }
   }
+  if(inSettings){
+  filter(INVERT);}
 
   if (touches.length==5) {//5
     Settings();
   } else if (plength==2) {
-    pg = createGraphics(width, height);
-    pg1 = createGraphics(width, height);
+    inSettings=false;
     SettingsPoint.col=color(random(50, 255), random(50, 255), random(50, 255));
     setting=color(random(150, 255), random(150, 255), random(150, 255));
     saving();

@@ -19,12 +19,14 @@ class Point {
     ellipse(x, y, size, size);
   }
   void pdraw() {
-    pgp.beginDraw();
-    pgp.stroke(col);
-    pgp.fill(col);
-    pgp.ellipse(x, y, size, size);
-    pgp.endDraw();
-    image(pgp, 0, 0);
+    if (frameCount/60%2==1) {
+      stroke(col, frameCount%60+40+1);
+      fill(col, frameCount%60+40+1);
+    } else {
+      stroke(col, 60-frameCount%60-1+40);
+      fill(col, 60-frameCount%60-1+40);
+    }
+    ellipse(x, y, size, size);
   }
   void update() {
     x+=move_x;
@@ -50,7 +52,7 @@ class Point {
       SelectedMode=2;
       saving();
     }
-  
+
     if (y>barrier*3.5-size/2 && x<=width/2-10-size/2) {
       x+=move_x;
       if (x>width/2-10-size/2) {
@@ -65,7 +67,7 @@ class Point {
       x+=move_x;
     }
     y+=move_y;
-    if(x>width/2-10-size/2 && x<width/2+10+size/2 && y>barrier*3.5-size/2){
+    if (x>width/2-10-size/2 && x<width/2+10+size/2 && y>barrier*3.5-size/2) {
       y=barrier*3.5-size/2;
     }
     if (x>width-barrier*1.5-10-size/2) {
