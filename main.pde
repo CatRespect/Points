@@ -22,7 +22,7 @@ void setup() {
   print(fileExists);
   if (!fileExists) {
     println("NO FILE");
-    SettingsPoint=new Point(x, y, color(random(50, 255), random(50, 255), random(50, 255)), 50);
+    SettingsPoint=new Point(x, y, color(random(100, 255), random(100, 255), random(100, 255)), 50);
     saving();
   } else {
     String[] in = loadStrings("settings.ini");
@@ -94,7 +94,7 @@ void draw() {
     Settings();
   } else if (plength==5) {//5
     inSettings=false;
-    SettingsPoint.col=color(random(50, 255), random(50, 255), random(50, 255));
+    SettingsPoint.col=color(random(100, 255), random(100, 255), random(100, 255));
     setting=color(random(150, 255), random(150, 255), random(150, 255));
     saving();
   }
