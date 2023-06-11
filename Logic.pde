@@ -1,4 +1,12 @@
-void slick(Point point) {
+/*
+
+Логика зависит от фпс,
+Убирать или нет?
+Нет.
+
+
+
+*/void slick(Point point) {
   float res_x=0;
   float res_y=0;
   for (int i=0; i<touches.length; i++) {

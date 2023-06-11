@@ -19,6 +19,6 @@ void Settings() {
 
   SettingsPoint.pupdate();
   SettingsPoint.pdraw();
-  SettingsPoint.move(cos(rotation)*4, sin(rotation)*4);
+  SettingsPoint.move(cos(rotation)*5, sin(rotation)*5);
   //SettingsPoint.print();
 }
