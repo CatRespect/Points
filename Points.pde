@@ -92,9 +92,9 @@ void draw() {
     filter(INVERT);
   }
 
-  if (touches.length==2) {//5
+  if (touches.length==5) {//5
     Settings();
-  } else if (plength==2) {//5
+  } else if (plength==5) {//5
     inSettings=false;
     SettingsPoint.col=color(random(100, 255), random(100, 255), random(100, 255));
     setting=color(random(150, 255), random(150, 255), random(150, 255));
