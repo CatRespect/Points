@@ -1,19 +1,31 @@
 ArrayList<Point> points;
 import ketai.sensors.*;
+import processing.sound.*;
 KetaiSensor sensor;
 float accelerometerX, accelerometerY, accelerometerZ, rotation;
 float barrier=0;
 color setting=color(random(150, 255), random(150, 255), random(150, 255));
 Point SettingsPoint;
 boolean inSettings;
+boolean debugMode=false;
 int SelectedMode=1;
 int plength=2;
+
+SoundFile file, filex;
+boolean sound=true;
 void setup() {
   size(displayWidth, displayHeight);
   frameRate(60);
   stroke(0);
   background (0);
   barrier=min(width, height)*0.13;
+
+  orientation(PORTRAIT);
+  //Добавить пасхалку для квадратных дисплеев
+
+  file = new SoundFile(this, "sample1.mp3");
+  filex = new SoundFile(this, "sample.mp3");
+
 
   boolean fileExists = doesFileExist("settings.ini");
   float x, y;
@@ -26,9 +38,9 @@ void setup() {
     saving();
   } else {
     String[] in = loadStrings("settings.ini");
-    if (in.length!=3) {
+    if (in.length!=4) {
       print("FILE CORRUPTED");//добавить максимальное извлечение данных
-      SettingsPoint=new Point(x, y, color(random(50, 255), random(50, 255), random(50, 255)), 50);
+      SettingsPoint=new Point(x, y, color(random(100, 255), random(100, 255), random(100, 255)), 50);
       saving();
     } else {
       if (in[0].split("=")[0].equals("SelectedMode") && (int(in[0].split("=")[1])==1 || int(in[0].split("=")[1])==2)) {
@@ -54,11 +66,20 @@ void setup() {
         println(in[2]);
       }
       print("STEP 3");
+
+      if (in[3].split("=")[0].equals("DebugMode")) {
+        debugMode=boolean(in[3].split("=")[1]);
+        println("DEBUGMODE: "+str(debugMode));
+      } else {
+        println(in[3]);
+      }
+      print("STEP 4");
     }
   }
 
+  textAlign(CENTER);
 
-  SettingsPoint=new Point(x, y, color(random(50, 255), random(50, 255), random(50, 255)), 50);
+  SettingsPoint=new Point(x, y, color(random(100, 255), random(100, 255), random(100, 255)), 50);
 
   sensor = new KetaiSensor(this);
   sensor.start();
@@ -88,6 +109,19 @@ void draw() {
       slick(point);
     }
   }
+  if (debugMode) {
+    textSize(20);
+    if (frameRate>=60) {
+      fill(#1AEA18);
+    } else if (frameRate>=30) {
+      fill(#FAC70D);
+    } else if (frameRate>=10) {
+      fill(#FF771C);
+    } else {
+      fill(#FF0900);
+    }
+    text(int(frameRate), width-30, height-20);
+  }
   if (inSettings) {
     filter(INVERT);
   }
@@ -99,6 +133,27 @@ void draw() {
     SettingsPoint.col=color(random(100, 255), random(100, 255), random(100, 255));
     setting=color(random(150, 255), random(150, 255), random(150, 255));
     saving();
+  }
+  if (touches.length==10 && plength!=10) {//debugMode
+    if (debugMode==false) {
+      frameRate(400);
+      debugMode=true;
+    } else {
+      frameRate(60);
+      debugMode=false;
+    }
+  }
+  if (touches.length==11) {
+    if (sound) {
+      if (random(10)>=9) {
+        file.play(1, 1);
+      } else {
+        filex.play(1, 1);
+      }
+      sound=false;
+    }
+  } else if (plength==11) {
+    sound=true;
   }
   plength=touches.length;
   //print(frameRate);
