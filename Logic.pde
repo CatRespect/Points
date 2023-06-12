@@ -42,8 +42,8 @@ void fasing(int i) {
       Point ii=points.get(i);
       Point jj=points.get(j);
       if (ii.get_x()==jj.get_x() && ii.get_y()==jj.get_y()) {
-        ii.place(ii.get_x()+random(-2, 2), ii.get_y()+random(-2, 2));
-        jj.place(jj.get_x()+random(-2, 2), jj.get_y()+random(-2, 2));
+        ii.place(ii.get_x()+random(-3, 3), ii.get_y()+random(-2, 2));
+        jj.place(jj.get_x()+random(-3, 3), jj.get_y()+random(-2, 2));
       }
     }
   }
