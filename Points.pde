@@ -111,7 +111,7 @@ void draw() {
   }
   if (debugMode) {
     textSize(20);
-    if (frameRate>=60) {
+    if (frameRate>=57) {
       fill(#1AEA18);
     } else if (frameRate>=30) {
       fill(#FAC70D);
