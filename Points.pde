@@ -115,6 +115,7 @@ void draw() {
     } else {
       point.draw();
     }
+    //point.print();
     if (touches.length!=0) {
       slick(point);
     }
@@ -171,5 +172,4 @@ void draw() {
     sound=true;
   }
   plength=touches.length;
-  //print(debug);
 }

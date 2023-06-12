@@ -1,12 +1,12 @@
 /*
 
-Логика зависит от фпс,
-Убирать или нет?
-Нет.
-
-
-
-*/void slick(Point point) {
+ Логика зависит от фпс,
+ Убирать или нет?
+ Нет.
+ 
+ 
+ 
+ */void slick(Point point) {
   float res_x=0;
   float res_y=0;
   for (int i=0; i<touches.length; i++) {
@@ -29,6 +29,12 @@
     }
     if (del_y<0) {
       move_y=0-move_y;
+    }
+    if (Float.isNaN(move_x)) {
+      move_x=0;
+    }
+    if (Float.isNaN(move_y)) {
+      move_y=0;
     }
     res_x+=move_x;
     res_y+=move_y;
