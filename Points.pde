@@ -10,7 +10,7 @@ boolean inSettings;
 boolean debugMode=false;
 int SelectedMode=1;
 int plength=2;
-int debugmax=3;
+int debugmax=5;
 int debug=debugmax;
 
 SoundFile file, filex;

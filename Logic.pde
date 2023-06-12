@@ -54,6 +54,7 @@ void onAccelerometerEvent(float x, float y, float z)
   accelerometerX = x;
   accelerometerY = y;
   accelerometerZ = z;
+  //println(cos(PI-atan2(accelerometerY, accelerometerX))*5,sin(PI-atan2(accelerometerY, accelerometerX))*5,-accelerometerX,accelerometerY);
 }
 boolean doesFileExist(String filePath) {
   return new File(dataPath(filePath)).exists();
