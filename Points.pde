@@ -10,6 +10,8 @@ boolean inSettings;
 boolean debugMode=false;
 int SelectedMode=1;
 int plength=2;
+int debugmax=3;
+int debug=debugmax;
 
 SoundFile file, filex;
 boolean sound=true;
@@ -93,18 +95,26 @@ void setup() {
   }
 }
 
+
+
+
+
+
+
+
 void draw() {
   background (0);
-  if (inSettings) {
-    filter(INVERT);
-  }
   for (int i=points.size()-1; i>=0; i--) {
     Point point = points.get(i);
     // collusion (i);
     point.update();
     fasing(i);
     //print("["+str(point.get_move_x())+","+str(point.get_move_y())+"],");
-    point.draw();
+    if (inSettings) {
+      point.inverted_draw();
+    } else {
+      point.draw();
+    }
     if (touches.length!=0) {
       slick(point);
     }
@@ -121,11 +131,8 @@ void draw() {
       fill(#FF0900);
     }
     text(int(frameRate), width-30, height-20);
+    //text(touches.length, width-30, height-20);
   }
-  if (inSettings) {
-    filter(INVERT);
-  }
-
   if (touches.length==5) {//5
     Settings();
   } else if (plength==5) {//5
@@ -134,7 +141,12 @@ void draw() {
     setting=color(random(150, 255), random(150, 255), random(150, 255));
     saving();
   }
-  if (touches.length==10 && plength!=10) {//debugMode
+  if (touches.length==debug && plength==debug+1) {
+    debug-=1;
+  } else if (plength<debug) {
+    debug=debugmax;
+  }
+  if (debug==-1) {//debugMode
     if (debugMode==false) {
       frameRate(400);
       debugMode=true;
@@ -142,19 +154,22 @@ void draw() {
       frameRate(60);
       debugMode=false;
     }
+    debug=debugmax;
   }
-  if (touches.length==11) {
+  if (touches.length==10) {//10
     if (sound) {
       if (random(10)>=9) {
-        file.play(1, 1);
-      } else {
         filex.play(1, 1);
+        println("SOUND1");
+      } else {
+        file.play(1, 1);
+        println("SOUND");
       }
       sound=false;
     }
-  } else if (plength==11) {
+  } else if (plength==10) {
     sound=true;
   }
   plength=touches.length;
-  //print(frameRate);
+  //print(debug);
 }

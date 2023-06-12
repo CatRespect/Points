@@ -17,6 +17,10 @@ class Point {
     stroke(col);
     fill(col);
     ellipse(x, y, size, size);
+  }void inverted_draw() {
+    stroke(255-red(col),255-green(col),255-blue(col));
+    fill(255-red(col),255-green(col),255-blue(col));
+    ellipse(x, y, size, size);
   }
   void pdraw() {
     if (frameCount/60%2==1) {
