@@ -1,6 +1,6 @@
 void Settings() {
   inSettings=true;
-  rotation=PI-atan2(accelerometerY, accelerometerX);
+  //rotation=PI-atan2(accelerometerY, accelerometerX);
 
   strokeWeight(25);
   if(millis()/1000%2==0){

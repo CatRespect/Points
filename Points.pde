@@ -109,12 +109,13 @@ void draw() {
     // collusion (i);
     point.update();
     fasing(i);
-    //print("["+str(point.get_move_x())+","+str(point.get_move_y())+"],");
+    
     if (inSettings) {
       point.inverted_draw();
     } else {
       point.draw();
     }
+    
     //point.print();
     if (touches.length!=0) {
       slick(point);

@@ -1,6 +1,7 @@
 class Point {
   float x, y, move_x, move_y;
   color col;
+  color neg_col;
   int size;
   Point (float xx, float yy, color c, int s) {
     x=xx;
@@ -8,6 +9,7 @@ class Point {
     move_x=0;
     move_y=0;
     col= c;
+    neg_col=color(255-red(col),255-green(col),255-blue(col));
     size=s;
   }
   void print() {
@@ -18,8 +20,8 @@ class Point {
     fill(col);
     ellipse(x, y, size, size);
   }void inverted_draw() {
-    stroke(255-red(col),255-green(col),255-blue(col));
-    fill(255-red(col),255-green(col),255-blue(col));
+    stroke(neg_col);
+    fill(neg_col);
     ellipse(x, y, size, size);
   }
   void pdraw() {
